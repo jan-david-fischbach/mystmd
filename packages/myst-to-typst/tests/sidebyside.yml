@@ -1,0 +1,45 @@
+title: myst-to-tex notebook features
+cases:
+  - title: notebook-code
+    mdast:
+      type: root
+      children:
+        - type: block
+          children:
+            - type: embed
+              source:
+                url: /sine-wave
+                label: plt:sine
+                kind: Notebook
+                slug: sine-wave
+                location: /sine_wave.ipynb
+              remove-input: false
+              remove-output: false
+              class: typst-sidebyside
+              children:
+                - type: code
+                  lang: python
+                  executable: true
+                  value: |-
+                    x = np.linspace(0, 4 * np.pi, 100)
+                    y = np.sin(x)
+                    _ = plt.plot(x, y)
+                  enumerator: "1"
+                  key: c3ClcsbuyX
+                - type: image
+                  data:
+                    type: output
+                  url: testimg.png
+                  urlSource: _build/exports/files/testimg.png
+              key: ddHeJ9R6KQ
+          key: Pvolnts7OZ
+      key: xtF9dHXDRs
+
+    typst: |-
+      ```python
+      x = np.linspace(0, 4 * np.pi, 100)
+      y = np.sin(x)
+      _ = plt.plot(x, y)
+      ```
+      
+      #image("testimg.png", width: 90%)
