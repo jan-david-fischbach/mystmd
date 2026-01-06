@@ -24,6 +24,8 @@ type FormatBuildOpts = {
   pdf?: boolean;
   tex?: boolean;
   typst?: boolean;
+  pre?: boolean;
+  post?: boolean;
   xml?: boolean;
   md?: boolean;
   meca?: boolean;
@@ -37,8 +39,8 @@ type FormatBuildOpts = {
 export type BuildOpts = FormatBuildOpts & CollectionOptions & RunExportOptions & StartOptions;
 
 export function hasAnyExplicitExportFormat(opts: BuildOpts): boolean {
-  const { docx, pdf, tex, typst, xml, md, meca, cff } = opts;
-  return docx || pdf || tex || typst || xml || md || meca || cff || false;
+  const { docx, pdf, tex, typst, pre, post, xml, md, meca, cff } = opts;
+  return docx || pdf || tex || typst || pre || post || xml || md || meca || cff || false;
 }
 
 /**
@@ -55,7 +57,7 @@ export function hasAnyExplicitExportFormat(opts: BuildOpts): boolean {
  * @param opts.explicit explicit input file was provided
  */
 export function getAllowedExportFormats(opts: FormatBuildOpts & { explicit?: boolean }) {
-  const { docx, pdf, tex, typst, xml, md, meca, cff, all, explicit } = opts;
+  const { docx, pdf, tex, typst, pre, post, xml, md, meca, cff, all, explicit } = opts;
   const formats = [];
   const any = hasAnyExplicitExportFormat(opts);
   const override = all || (!any && explicit);
@@ -67,6 +69,8 @@ export function getAllowedExportFormats(opts: FormatBuildOpts & { explicit?: boo
     formats.push(ExportFormats.tex, ExportFormats.pdftex);
   }
   if (typst || override) formats.push(ExportFormats.typst);
+  if (pre || override) formats.push(ExportFormats.pre);
+  if (post || override) formats.push(ExportFormats.post);
   if (xml || override) formats.push(ExportFormats.xml);
   if (md || override) formats.push(ExportFormats.md);
   if (meca || override) formats.push(ExportFormats.meca);
@@ -78,12 +82,14 @@ export function getAllowedExportFormats(opts: FormatBuildOpts & { explicit?: boo
  * Return requested formats from CLI options
  */
 export function getRequestedExportFormats(opts: FormatBuildOpts) {
-  const { docx, pdf, tex, typst, xml, md, meca, cff } = opts;
+  const { docx, pdf, tex, typst, pre, post, xml, md, meca, cff } = opts;
   const formats = [];
   if (docx) formats.push(ExportFormats.docx);
   if (pdf) formats.push(ExportFormats.pdf);
   if (tex) formats.push(ExportFormats.tex);
   if (typst) formats.push(ExportFormats.typst);
+  if (pre) formats.push(ExportFormats.pre);
+  if (post) formats.push(ExportFormats.post);
   if (xml) formats.push(ExportFormats.xml);
   if (md) formats.push(ExportFormats.md);
   if (meca) formats.push(ExportFormats.meca);
@@ -239,7 +245,7 @@ export async function build(session: ISession, files: string[], opts: BuildOpts)
       // Print out the kinds that are filtered
       const kinds = Object.entries(opts)
         .filter(
-          ([k, v]) => ['docx', 'pdf', 'tex', 'typst', 'xml', 'md', 'meca', 'cff'].includes(k) && v,
+          ([k, v]) => ['docx', 'pdf', 'tex', 'typst', 'xml', 'md', 'meca', 'cff', 'pre', 'post'].includes(k) && v, //TODO add pre and post?
         )
         .map(([k]) => k);
       session.log.info(

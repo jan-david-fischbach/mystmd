@@ -20,6 +20,14 @@ export function makeTypstOption(description: string) {
   return new Option('--typst', description).default(false);
 }
 
+export function makePreAstOption(description: string) {
+  return new Option('--pre', description).default(false);
+}
+
+export function makePostAstOption(description: string) {
+  return new Option('--post', description).default(false);
+}
+
 export function makeDocxOption(description: string) {
   return new Option('--word, --docx', description).default(false);
 }

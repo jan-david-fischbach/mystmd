@@ -278,6 +278,8 @@ export const ALLOWED_EXTENSIONS: Record<ExportFormats, string[]> = {
   [ExportFormats.typst]: ['.pdf', '.typ', '.typst', '.zip'],
   [ExportFormats.xml]: ['.xml', '.jats'],
   [ExportFormats.cff]: ['.cff'],
+  [ExportFormats.pre]:  ['.yml', '.yaml', '.json'],
+  [ExportFormats.post]: ['.yml', '.yaml', '.json']
 };
 
 /**

@@ -10,6 +10,8 @@ export enum ExportFormats {
   md = 'md',
   meca = 'meca',
   cff = 'cff',
+  pre = 'pre',
+  post = 'post'
 }
 
 export type ExportArticle = {

@@ -14,6 +14,7 @@ import type {
 import { resolveAndLogErrors } from './resolveAndLogErrors.js';
 import { runTexZipExport, runTexExport } from '../tex/single.js';
 import { runTypstExport, runTypstPdfExport, runTypstZipExport } from '../typst.js';
+import { runAstExport } from '../ast.js';
 import { runWordExport } from '../docx/single.js';
 import { runJatsExport } from '../jats/single.js';
 import { texExportOptionsFromPdf } from '../pdf/single.js';
@@ -107,6 +108,10 @@ async function _localArticleExport(
         } else {
           exportFn = runTypstExport;
         }
+      } else if (format === ExportFormats.pre) {
+        exportFn = runAstExport;
+      } else if (format === ExportFormats.post) {
+        exportFn = runAstExport;
       } else if (format === ExportFormats.docx) {
         exportFn = runWordExport;
       } else if (format === ExportFormats.xml) {

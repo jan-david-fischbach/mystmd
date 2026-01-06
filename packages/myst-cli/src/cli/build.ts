@@ -14,6 +14,8 @@ import {
   makeMecaOptions,
   makeMdOption,
   makeTypstOption,
+  makePreAstOption,
+  makePostAstOption,
   makeWatchOption,
   makeCIOption,
   makeExecuteOption,
@@ -33,6 +35,8 @@ export function makeBuildCommand() {
     .addOption(makePdfOption('Build PDF output'))
     .addOption(makeTexOption('Build LaTeX outputs'))
     .addOption(makeTypstOption('Build Typst outputs'))
+    .addOption(makePreAstOption('Build PRE AST output'))
+    .addOption(makePostAstOption('Build POST AST output'))
     .addOption(makeDocxOption('Build Docx output'))
     .addOption(makeMdOption('Build MD output'))
     .addOption(makeJatsOption('Build JATS xml output'))
