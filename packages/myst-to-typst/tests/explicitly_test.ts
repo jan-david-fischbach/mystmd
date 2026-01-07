@@ -13,7 +13,7 @@ const content = fs.readFileSync(
 // Parse YAML
 const cases = yaml.load(content) as unknown;
 
-const mdast = cases.cases[0].mdast;
+const mdast = cases.cases[2].mdast;
 
 const pipe: any = unified().use(mystToTypst);
 

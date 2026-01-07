@@ -1,6 +1,6 @@
 title: myst-to-tex notebook features
 cases:
-  - title: notebook-code
+  - title: vanilla
     mdast:
       type: root
       children:
@@ -15,7 +15,6 @@ cases:
                 location: /sine_wave.ipynb
               remove-input: false
               remove-output: false
-              class: typst-sidebyside
               children:
                 - type: code
                   lang: python
@@ -43,3 +42,114 @@ cases:
       ```
       
       #image("testimg.png", width: 90%)
+
+  - title: sidebyside
+    mdast:
+      type: root
+      children:
+        - type: block
+          children:
+            - type: embed
+              source:
+                url: /sine-wave
+                label: plt:sine
+                kind: Notebook
+                slug: sine-wave
+                location: /sine_wave.ipynb
+              remove-input: false
+              remove-output: false
+              class: print-sidebyside
+              children:
+                - type: code
+                  lang: python
+                  executable: true
+                  value: |-
+                    x = np.linspace(0, 4 * np.pi, 100)
+                    y = np.sin(x)
+                    _ = plt.plot(x, y)
+                  enumerator: "1"
+                  key: c3ClcsbuyX
+                - type: image
+                  data:
+                    type: output
+                  url: testimg.png
+                  urlSource: _build/exports/files/testimg.png
+              key: ddHeJ9R6KQ
+          key: Pvolnts7OZ
+      key: xtF9dHXDRs
+
+    typst: |-
+      ```python
+      x = np.linspace(0, 4 * np.pi, 100)
+      y = np.sin(x)
+      _ = plt.plot(x, y)
+      ```
+      
+      #image("testimg.png", width: 90%)
+
+
+  - title: figure
+    mdast:
+      type: root
+      children:
+        - type: container
+          kind: figure
+          children:
+            - type: image
+              data:
+                type: output
+              url: files/7f0df2d5484911d6e8d5977fb6403494.png
+              urlSource: _build/exports/files/7f0df2d5484911d6e8d5977fb6403494.png
+            - type: caption
+              children:
+                - type: paragraph
+                  position:
+                    start:
+                      line: 35
+                      column: 1
+                    end:
+                      line: 35
+                      column: 1
+                  children:
+                    - type: captionNumber
+                      kind: figure
+                      label: testlabel
+                      identifier: testlabel
+                      html_id: testlabel
+                      enumerator: "1"
+                      children:
+                        - type: text
+                          value: Figure 
+                          key: lZpzPfAruk
+                        - type: text
+                          value: "1"
+                          key: kgWqSfFvco
+                        - type: text
+                          value: ":"
+                          key: elB99k47wz
+                      template: "Figure %s:"
+                      key: JWoQNLUV5h
+                    - type: text
+                      value: This is a caption
+                      position:
+                        start:
+                          line: 35
+                          column: 1
+                        end:
+                          line: 35
+                          column: 1
+                      key: JAI8RRgi8U
+                  key: EkBLAVZkOq
+              key: eYkiSBc7B5
+          label: testlabel
+          identifier: testlabel
+          enumerator: "1"
+          html_id: testlabel
+          source:
+            url: /sine-wave
+            label: plt:sine
+            kind: Notebook
+            slug: sine-wave
+            location: /sine_wave.ipynb
+          key: WxNiNgUOs3
+      key: hVV1YqrcYb
