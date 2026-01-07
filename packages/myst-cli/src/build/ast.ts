@@ -59,7 +59,7 @@ export async function localArticleToAST(
     }),
   );
 
-  session.log.info(toc(`📑 Exported typst in %s, copying to ${output}`));
+  session.log.info(toc(`📑 Exported ast in %s, copying to ${output}`));
   session.log.info(`AST: ${JSON.stringify(results, undefined, 2)}`);
 
   writeFileToFolder(output, JSON.stringify(results[0], undefined, 2));
