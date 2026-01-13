@@ -23,6 +23,7 @@ const SUBFIGURE_TYPES = [
   'table',
   'code',
   'output',
+  'card'
 ];
 
 /** Raise a warning if caption includes content that is expected to be directly on the figure */
