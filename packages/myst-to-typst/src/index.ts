@@ -455,16 +455,13 @@ const handlers: Record<string, Handler> = {
   },
   card(node, state) {
 
-    state.useMacro('#import "@preview/shadowed:0.2.0": shadowed')
+    state.useMacro('#let card(content) = [#content]')
     if (!(state.data.isInFigure || state.data.isInTable || state.data.isInBlockquote)) { 
       //FIXME: this is very inelegant. How to avoid # when within a function call? 
       state.write("#");
     }
-    state.write("shadowed(\n");
-    state.write("  radius: 6pt,\n");
-    state.write("  inset: 10pt,\n");
-    state.write("  fill: rgb(247,247,247),\n  [");
 
+    state.write("card([\n");
     if (node.url) {
       node.children?.push({ type: 'paragraph', children: [{ type: 'text', value: node.url }] });
     }
