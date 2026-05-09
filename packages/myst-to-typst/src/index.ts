@@ -465,6 +465,8 @@ const handlers: Record<string, Handler> = {
     let in_call = state.data.isInFigure || state.data.isInTable || state.data.isInBlockquote
     if (!in_call) { 
       //FIXME: this is very inelegant. How to avoid # when within a function call? 
+      //Probalby it would be better to have state.data.inCmd to keep track whether 
+      //we are in a command or content environment
       state.write("#");
     }
 
