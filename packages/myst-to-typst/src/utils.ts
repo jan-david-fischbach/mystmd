@@ -243,6 +243,7 @@ export function stringToTypstMath(text: string) {
 }
 
 export function getLatexImageWidth(width?: number | string): string {
+  if (width === undefined) return 'auto';
   if (typeof width === 'number' && Number.isNaN(width)) {
     // If it is nan, return with the default.
     return getLatexImageWidth(DEFAULT_IMAGE_WIDTH);
