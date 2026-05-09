@@ -467,13 +467,13 @@ const handlers: Record<string, Handler> = {
       state.write("#");
     }
 
-    state.write("card([\n");
+    state.write("card(\n");
     if (node.url) {
       node.children?.push({ type: 'paragraph', children: [{ type: 'text', value: node.url }] });
     }
     state.renderChildren(node);
 
-    state.write("  ])\n");
+    state.write("  )\n");
 
     state.ensureNewLine();
     state.write('\n');
