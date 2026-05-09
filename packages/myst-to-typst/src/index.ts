@@ -462,18 +462,25 @@ const handlers: Record<string, Handler> = {
   card(node, state) {
 
     state.useMacro('#let card(content) = [#content]')
-    if (!(state.data.isInFigure || state.data.isInTable || state.data.isInBlockquote)) { 
+    let in_call = state.data.isInFigure || state.data.isInTable || state.data.isInBlockquote
+    if (!in_call) { 
       //FIXME: this is very inelegant. How to avoid # when within a function call? 
       state.write("#");
     }
 
-    state.write("card(\n");
+    state.write("card(");
+    if (!in_call) {
+      state.write("[");
+    }
     if (node.url) {
       node.children?.push({ type: 'paragraph', children: [{ type: 'text', value: node.url }] });
     }
     state.renderChildren(node);
 
-    state.write("  )\n");
+    if (!in_call) {
+      state.write("]");
+    }
+    state.write(")\n");
 
     state.ensureNewLine();
     state.write('\n');
