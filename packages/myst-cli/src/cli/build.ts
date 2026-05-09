@@ -19,6 +19,7 @@ import {
   makeWatchOption,
   makeCIOption,
   makeExecuteOption,
+  makeExecuteParallelOption,
   makeMaxSizeWebpOption,
   makeDOIBibOption,
   makeCffOption,
@@ -32,6 +33,7 @@ export function makeBuildCommand() {
     .description('Build PDF, LaTeX, Word and website exports from MyST files')
     .argument('[files...]', 'list of files to export')
     .addOption(makeExecuteOption('Execute Notebooks'))
+    .addOption(makeExecuteParallelOption())
     .addOption(makePdfOption('Build PDF output'))
     .addOption(makeTexOption('Build LaTeX outputs'))
     .addOption(makeTypstOption('Build Typst outputs'))
